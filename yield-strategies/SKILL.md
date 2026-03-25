@@ -11,7 +11,7 @@ APY values are **already percentages**: `apy = 2.32` means 2.32%.
 
 Do NOT multiply by 100. This is the most common mistake when working with yield data.
 
-## Tool: `defillama-db:get_yield_pools`
+## Tool: `defillama:get_yield_pools`
 
 ### Filtering Guide
 
@@ -67,20 +67,20 @@ When allocating capital, check pool TVL. Allocating more than 10% of a pool's TV
 
 **Example 1:**
 User: "Best stablecoin lending yields"
-Tool call: `defillama-db:get_yield_pools(stablecoin_only: true, category: "Lending", sort_by: "apy desc")`
+Tool call: `defillama:get_yield_pools(stablecoin_only: true, category: "Lending", sort_by: "apy desc")`
 
 **Example 2:**
 User: "Top ETH yield pools with over $1M TVL"
-Tool call: `defillama-db:get_yield_pools(token: "coingecko:ethereum", min_tvl: 1000000, sort_by: "apy desc")`
+Tool call: `defillama:get_yield_pools(token: "coingecko:ethereum", min_tvl: 1000000, sort_by: "apy desc")`
 
 **Example 3:**
 User: "Cheapest borrowing rates for stablecoins on Arbitrum"
-Tool call: `defillama-db:get_yield_pools(stablecoin_only: true, chain: "arbitrum", category: "Lending", include_borrow: true, sort_by: "apy_base_borrow asc")`
+Tool call: `defillama:get_yield_pools(stablecoin_only: true, chain: "arbitrum", category: "Lending", include_borrow: true, sort_by: "apy_base_borrow asc")`
 
 **Example 4:**
 User: "Where can I earn yield on USDC?"
-Tool call: `defillama-db:get_yield_pools(token: "coingecko:usd-coin", sort_by: "apy desc", min_tvl: 100000)`
+Tool call: `defillama:get_yield_pools(token: "coingecko:usd-coin", sort_by: "apy desc", min_tvl: 100000)`
 
 **Example 5:**
 User: "Aave yields on Ethereum"
-Tool call: `defillama-db:get_yield_pools(protocol: "aave", chain: "ethereum", sort_by: "apy desc")`
+Tool call: `defillama:get_yield_pools(protocol: "aave", chain: "ethereum", sort_by: "apy desc")`

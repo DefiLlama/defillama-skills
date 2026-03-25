@@ -9,31 +9,31 @@ description: Core reference for DefiLlama MCP tools. Maps DeFi questions to the 
 
 | Question | Tool | Key Params |
 |----------|------|------------|
-| Total DeFi TVL, global volumes | `defillama-db:get_market_totals` | `metrics` (tvl_base, volume_dexs_1d, etc.) |
-| Protocol TVL, fees, revenue | `defillama-db:get_protocol_metrics` | `protocol`, `metrics` |
-| Chain TVL, gas fees, REV | `defillama-db:get_chain_metrics` | `chain`, `metrics` |
-| Token price, mcap, ATH | `defillama-db:get_token_prices` | `token` |
-| Category rankings | `defillama-db:get_category_metrics` | `category` |
-| Pool APY, lending rates | `defillama-db:get_yield_pools` | `token`, `chain`, `category` |
-| Stablecoin supply | `defillama-db:get_stablecoin_supply` | `stablecoin`, `chain` |
-| ETF inflows/outflows | `defillama-db:get_etf_flows` | `token` (bitcoin/ethereum) |
-| Bridge volume | `defillama-db:get_bridge_flows` | `bridge`, `chain` |
-| CEX volume | `defillama-db:get_cex_volumes` | `cex` |
-| Open interest | `defillama-db:get_open_interest` | `protocol`, `chain` |
-| Hacks/exploits | `defillama-db:get_events` | `event_type: "hacks"` |
-| Fundraising | `defillama-db:get_events` | `event_type: "raises"` |
-| Protocol events | `defillama-db:get_events` | `event_type: "protocol_events"` |
-| Protocol treasury | `defillama-db:get_treasury` | `treasury` |
-| Institutional holdings | `defillama-db:get_dat_holdings` | `institution`, `token` |
-| Token unlocks | `defillama-db:get_token_unlocks` | `token`, `query_type` (chart, window, day, window_all, ratio, market_window) |
-| Token TVL in protocols | `defillama-db:get_token_tvl` | `token`, `protocol` |
-| Oracle coverage | `defillama-db:get_oracle_metrics` | `oracle` |
-| User activity | `defillama-db:get_user_activity` | `protocol`, `chain` |
-| Income statement | `defillama-db:get_income_statement` | `protocol` |
-| Protocol metadata, URLs, audit | `defillama-db:get_protocol_info` | `protocol`, `category`, `tag`, `has_token`, `chain` |
-| Chain metadata, type, L2 parent | `defillama-db:get_chain_info` | `chain`, `chain_type` |
-| List valid categories | `defillama-db:list_categories` | `type` (protocol, token, chain) |
-| Unknown entity slug | `defillama-db:resolve_entity` | `name` |
+| Total DeFi TVL, global volumes | `defillama:get_market_totals` | `metrics` (tvl_base, volume_dexs_1d, etc.) |
+| Protocol TVL, fees, revenue | `defillama:get_protocol_metrics` | `protocol`, `metrics` |
+| Chain TVL, gas fees, REV | `defillama:get_chain_metrics` | `chain`, `metrics` |
+| Token price, mcap, ATH | `defillama:get_token_prices` | `token` |
+| Category rankings | `defillama:get_category_metrics` | `category` |
+| Pool APY, lending rates | `defillama:get_yield_pools` | `token`, `chain`, `category` |
+| Stablecoin supply | `defillama:get_stablecoin_supply` | `stablecoin`, `chain` |
+| ETF inflows/outflows | `defillama:get_etf_flows` | `token` (bitcoin/ethereum) |
+| Bridge volume | `defillama:get_bridge_flows` | `bridge`, `chain` |
+| CEX volume | `defillama:get_cex_volumes` | `cex` |
+| Open interest | `defillama:get_open_interest` | `protocol`, `chain` |
+| Hacks/exploits | `defillama:get_events` | `event_type: "hacks"` |
+| Fundraising | `defillama:get_events` | `event_type: "raises"` |
+| Protocol events | `defillama:get_events` | `event_type: "protocol_events"` |
+| Protocol treasury | `defillama:get_treasury` | `treasury` |
+| Institutional holdings | `defillama:get_dat_holdings` | `institution`, `token` |
+| Token unlocks | `defillama:get_token_unlocks` | `token`, `query_type` (chart, window, day, window_all, ratio, market_window) |
+| Token TVL in protocols | `defillama:get_token_tvl` | `token`, `protocol` |
+| Oracle coverage | `defillama:get_oracle_metrics` | `oracle` |
+| User activity | `defillama:get_user_activity` | `protocol`, `chain` |
+| Income statement | `defillama:get_income_statement` | `protocol` |
+| Protocol metadata, URLs, audit | `defillama:get_protocol_info` | `protocol`, `category`, `tag`, `has_token`, `chain` |
+| Chain metadata, type, L2 parent | `defillama:get_chain_info` | `chain`, `chain_type` |
+| List valid categories | `defillama:list_categories` | `type` (protocol, token, chain) |
+| Unknown entity slug | `defillama:resolve_entity` | `name` |
 
 ## Entity Conventions
 
@@ -65,7 +65,7 @@ All entity params accept single values or arrays for comparison:
 
 ## Entity Resolution
 
-Try tools directly for well-known entities — works 80%+ of the time. Use `defillama-db:resolve_entity` only when:
+Try tools directly for well-known entities — works 80%+ of the time. Use `defillama:resolve_entity` only when:
 
 - Unsure of exact slug
 - Tool returns 0 rows
@@ -141,32 +141,32 @@ Daily views only have the `_1d` suffix for flows/volumes.
 
 **Example 1:**
 User: "What is Aave's TVL?"
-Tool call: `defillama-db:get_protocol_metrics(protocol: "aave", metrics: ["tvl_base"])`
+Tool call: `defillama:get_protocol_metrics(protocol: "aave", metrics: ["tvl_base"])`
 
 **Example 2:**
 User: "Top 5 chains by fees"
-Tool call: `defillama-db:get_chain_metrics(sort_by: "chain_fees_1d desc", limit: 5)`
+Tool call: `defillama:get_chain_metrics(sort_by: "chain_fees_1d desc", limit: 5)`
 
 **Example 3:**
 User: "ETH price history over 90 days"
-Tool call: `defillama-db:get_token_prices(token: "coingecko:ethereum", period: "90d")`
+Tool call: `defillama:get_token_prices(token: "coingecko:ethereum", period: "90d")`
 
 **Example 4:**
 User: "Compare ETH price and Ethereum chain TVL"
 Tool calls in parallel:
-- `defillama-db:get_token_prices(token: "coingecko:ethereum")`
-- `defillama-db:get_chain_metrics(chain: "ethereum")`
+- `defillama:get_token_prices(token: "coingecko:ethereum")`
+- `defillama:get_chain_metrics(chain: "ethereum")`
 
 **Example 5:**
 User: "Biggest DeFi hacks this year"
-Tool call: `defillama-db:get_events(event_type: "hacks", sort_by: "amount desc", limit: 10, period: "365d")`
+Tool call: `defillama:get_events(event_type: "hacks", sort_by: "amount desc", limit: 10, period: "365d")`
 
 **Example 6:**
 User: "Aave TVL from Jan to Mar 2025"
-Tool call: `defillama-db:get_protocol_metrics(protocol: "aave", metrics: ["tvl_base"], start_date: "2025-01-01", end_date: "2025-03-31")`
+Tool call: `defillama:get_protocol_metrics(protocol: "aave", metrics: ["tvl_base"], start_date: "2025-01-01", end_date: "2025-03-31")`
 
 ## Error Recovery
 
-1. **0 rows returned** -> call `defillama-db:resolve_entity(name: "...")` -> retry with the correct slug
+1. **0 rows returned** -> call `defillama:resolve_entity(name: "...")` -> retry with the correct slug
 2. **Wrong data** -> verify you're using the right tool (protocol vs chain vs category)
 3. **Ambiguous entity** -> call `resolve_entity` to see all matching slugs, then pick the right one

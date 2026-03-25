@@ -21,7 +21,7 @@ Fetch public companies and institutions that hold crypto on their balance
 sheets, including market-to-NAV ratios.
 
 ```
-defillama-db:get_dat_holdings
+defillama:get_dat_holdings
   include_mnav: true
 ```
 
@@ -35,7 +35,7 @@ a significant premium or discount to NAV (mNAV far from 1.0).
 Get recent BTC ETF inflow and outflow data.
 
 ```
-defillama-db:get_etf_flows
+defillama:get_etf_flows
   token: "bitcoin"
 ```
 
@@ -46,7 +46,7 @@ Positive flows = net buying. Negative flows = net selling.
 Get recent ETH ETF inflow and outflow data.
 
 ```
-defillama-db:get_etf_flows
+defillama:get_etf_flows
   token: "ethereum"
 ```
 
@@ -55,7 +55,7 @@ defillama-db:get_etf_flows
 Fetch current BTC and ETH prices to contextualize the flows.
 
 ```
-defillama-db:get_token_prices
+defillama:get_token_prices
   token: ["coingecko:bitcoin", "coingecko:ethereum"]
 ```
 

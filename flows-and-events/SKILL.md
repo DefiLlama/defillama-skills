@@ -7,7 +7,7 @@ description: Guide for querying DeFi flow data and events using DefiLlama MCP to
 
 ## Bridge Flows
 
-Tool: `defillama-db:get_bridge_flows`
+Tool: `defillama:get_bridge_flows`
 
 - Two-way bridge deduplication is applied automatically when aggregating
 - Grain: bridge x chain (one row per bridge per chain)
@@ -16,7 +16,7 @@ Tool: `defillama-db:get_bridge_flows`
 
 ## ETF Flows
 
-Tool: `defillama-db:get_etf_flows`
+Tool: `defillama:get_etf_flows`
 
 - `flow_usd` is **signed**: positive = inflow, negative = outflow
 - Filter by underlying: `token: "bitcoin"` for all BTC ETFs, `token: "ethereum"` for ETH ETFs
@@ -25,7 +25,7 @@ Tool: `defillama-db:get_etf_flows`
 
 ## Stablecoin Supply
 
-Tool: `defillama-db:get_stablecoin_supply`
+Tool: `defillama:get_stablecoin_supply`
 
 - Supply = **issuance** on each chain, NOT DeFi deposits
 - Grain: stablecoin x chain (one row per stablecoin per chain)
@@ -35,7 +35,7 @@ Tool: `defillama-db:get_stablecoin_supply`
 
 ## Institutional Holdings (DAT)
 
-Tool: `defillama-db:get_dat_holdings`
+Tool: `defillama:get_dat_holdings`
 
 - Tokens are automatically prefixed with `coingecko:` if not already (e.g., `token: "bitcoin"` works)
 - Base response: institution overview (total value, cost, mNAV ratios)
@@ -52,7 +52,7 @@ Tool: `defillama-db:get_dat_holdings`
 
 ## Hacks and Exploits
 
-Tool: `defillama-db:get_events` with `event_type: "hacks"`
+Tool: `defillama:get_events` with `event_type: "hacks"`
 
 - Filter by `protocol` (victim slug), `chain` (uses `= ANY(chains)` for array column), `min_amount`
 - `returned_funds` shows how much was recovered after the hack
@@ -60,35 +60,35 @@ Tool: `defillama-db:get_events` with `event_type: "hacks"`
 
 ## Fundraising Rounds
 
-Tool: `defillama-db:get_events` with `event_type: "raises"`
+Tool: `defillama:get_events` with `event_type: "raises"`
 
 - Filter by `protocol`, `chain` (uses `= ANY(chains)` for array column), `min_amount`
 - Use `sort_by: "amount desc"` for largest rounds
 
 ## Protocol Events
 
-Tool: `defillama-db:get_events` with `event_type: "protocol_events"`
+Tool: `defillama:get_events` with `event_type: "protocol_events"`
 
 - Governance votes, upgrades, launches, and other protocol milestones
 - Additional filters: `target_type` (filter by target type), `sub_protocol` (filter by sub-protocol slug)
 
 ## CEX Volumes
 
-Tool: `defillama-db:get_cex_volumes`
+Tool: `defillama:get_cex_volumes`
 
 - CEX slugs differ from common names: binance -> `binance-cex`, huobi -> `htx`, gate.io -> `gate-io`
 - Params: `cex`, `period`, `sort_by`, `limit`
 
 ## Open Interest
 
-Tool: `defillama-db:get_open_interest`
+Tool: `defillama:get_open_interest`
 
 - Aggregates with SUM/GROUP BY for proper protocol-level totals
 - Params: `protocol`, `chain`, `period`, `start_date`, `end_date`, `sort_by`, `limit`
 
 ## Treasury
 
-Tool: `defillama-db:get_treasury`
+Tool: `defillama:get_treasury`
 
 - Aggregates with SUM/GROUP BY for proper protocol-level totals
 - `treasury_excl_own_token` is the realistic value (excludes inflation of protocol's own token)
@@ -99,36 +99,36 @@ Tool: `defillama-db:get_treasury`
 
 **Example 1:**
 User: "Bitcoin ETF flows this month"
-Tool call: `defillama-db:get_etf_flows(token: "bitcoin", period: "30d")`
+Tool call: `defillama:get_etf_flows(token: "bitcoin", period: "30d")`
 
 **Example 2:**
 User: "MicroStrategy bitcoin holdings"
-Tool call: `defillama-db:get_dat_holdings(institution: "microstrategy", token: "coingecko:bitcoin", include_history: true)`
+Tool call: `defillama:get_dat_holdings(institution: "microstrategy", token: "coingecko:bitcoin", include_history: true)`
 
 **Example 3:**
 User: "Biggest DeFi hacks in 2024"
-Tool call: `defillama-db:get_events(event_type: "hacks", sort_by: "amount desc", limit: 10, start_date: "2024-01-01", end_date: "2024-12-31")`
+Tool call: `defillama:get_events(event_type: "hacks", sort_by: "amount desc", limit: 10, start_date: "2024-01-01", end_date: "2024-12-31")`
 
 **Example 4:**
 User: "USDT supply across chains"
-Tool call: `defillama-db:get_stablecoin_supply(stablecoin: "coingecko:tether", sort_by: "circulating_supply desc")`
+Tool call: `defillama:get_stablecoin_supply(stablecoin: "coingecko:tether", sort_by: "circulating_supply desc")`
 
 **Example 5:**
 User: "Top bridge volume this week"
-Tool call: `defillama-db:get_bridge_flows(period: "7d", sort_by: "volume desc", limit: 10)`
+Tool call: `defillama:get_bridge_flows(period: "7d", sort_by: "volume desc", limit: 10)`
 
 **Example 6:**
 User: "Largest crypto fundraises this year"
-Tool call: `defillama-db:get_events(event_type: "raises", period: "365d", sort_by: "amount desc", limit: 20)`
+Tool call: `defillama:get_events(event_type: "raises", period: "365d", sort_by: "amount desc", limit: 20)`
 
 **Example 7:**
 User: "Binance trading volume"
-Tool call: `defillama-db:get_cex_volumes(cex: "binance-cex")`
+Tool call: `defillama:get_cex_volumes(cex: "binance-cex")`
 
 **Example 8:**
 User: "Uniswap treasury breakdown"
-Tool call: `defillama-db:get_treasury(treasury: "uniswap")`
+Tool call: `defillama:get_treasury(treasury: "uniswap")`
 
 **Example 9:**
 User: "ETF flows in February 2025"
-Tool call: `defillama-db:get_etf_flows(token: "bitcoin", start_date: "2025-02-01", end_date: "2025-02-28")`
+Tool call: `defillama:get_etf_flows(token: "bitcoin", start_date: "2025-02-01", end_date: "2025-02-28")`

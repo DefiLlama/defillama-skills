@@ -21,7 +21,7 @@ institutional flows.
 Get the aggregate DeFi TVL, total DEX volume, and derivatives volume.
 
 ```
-defillama-db:get_market_totals
+defillama:get_market_totals
   metrics: ["tvl_base", "tvl_base_7d_pct_change", "volume_dexs_1d", "volume_derivatives_1d"]
 ```
 
@@ -32,7 +32,7 @@ This is a single-row global snapshot. NO fees/revenue here — those come from c
 Get the top DeFi categories ranked by TVL and fees.
 
 ```
-defillama-db:get_category_metrics
+defillama:get_category_metrics
 ```
 
 This shows which sectors (DEXes, lending, liquid staking, etc.) are
@@ -43,7 +43,7 @@ leading the market.
 Fetch the leading chains by TVL.
 
 ```
-defillama-db:get_chain_metrics
+defillama:get_chain_metrics
   limit: 10
 ```
 
@@ -52,7 +52,7 @@ defillama-db:get_chain_metrics
 Fetch the leading protocols by TVL.
 
 ```
-defillama-db:get_protocol_metrics
+defillama:get_protocol_metrics
   limit: 10
 ```
 
@@ -61,7 +61,7 @@ defillama-db:get_protocol_metrics
 Check for recent hacks or exploits.
 
 ```
-defillama-db:get_events
+defillama:get_events
   event_type: "hacks"
 ```
 
@@ -70,7 +70,7 @@ defillama-db:get_events
 Check for recent funding rounds and investments.
 
 ```
-defillama-db:get_events
+defillama:get_events
   event_type: "raises"
 ```
 
@@ -79,7 +79,7 @@ defillama-db:get_events
 Get total stablecoin market and top stablecoins.
 
 ```
-defillama-db:get_stablecoin_supply
+defillama:get_stablecoin_supply
 ```
 
 Stablecoin supply growth is a proxy for capital entering the crypto
@@ -90,7 +90,7 @@ ecosystem.
 Check recent institutional activity through ETFs.
 
 ```
-defillama-db:get_etf_flows
+defillama:get_etf_flows
 ```
 
 ## Output Format

@@ -75,7 +75,7 @@ Ask your agent:
 
 > "What is the current total DeFi TVL?"
 
-If it calls `defillama-db:get_market_totals` and returns data, you're
+If it calls `defillama:get_market_totals` and returns data, you're
 connected.
 
 ## Step 4 - Install workflow skills (optional)
@@ -88,14 +88,14 @@ Copy the skills from the DefiLlama MCP repo into your skills directory:
 
 **OpenClaw:**
 ```bash
-git clone https://github.com/DefiLlama/defillama-mcp /tmp/defillama-mcp
-cp -r /tmp/defillama-mcp/skills/* ~/.openclaw/skills/
+git clone https://github.com/DefiLlama/defillama-skills /tmp/defillama-skills
+cp -r /tmp/defillama-skills/* ~/.openclaw/skills/
 ```
 
 **Claude Code:**
 ```bash
-git clone https://github.com/DefiLlama/defillama-mcp /tmp/defillama-mcp
-cp -r /tmp/defillama-mcp/skills/* .claude/skills/
+git clone https://github.com/DefiLlama/defillama-skills /tmp/defillama-skills
+cp -r /tmp/defillama-skills/* .claude/skills/
 ```
 
 Available workflow skills:
@@ -113,7 +113,7 @@ Available workflow skills:
 | `flows-and-events` | Capital flows: bridges, ETFs, stablecoins, hacks, raises, OI |
 | `institutional-crypto` | Institutional exposure: corporate holdings, ETF flows, mNAV ratios |
 
-## Available Tools (23)
+## Available Tools (24)
 
 | Tool | Description |
 |------|-------------|
@@ -140,6 +140,7 @@ Available workflow skills:
 | `get_treasury` | Protocol treasury holdings |
 | `get_user_activity` | Daily active users and transactions |
 | `get_income_statement` | Protocol revenue breakdown |
+| `get_my_usage` | Check remaining API credits |
 
 ## Troubleshooting
 

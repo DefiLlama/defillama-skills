@@ -19,7 +19,7 @@ chain-level metrics with protocol, bridge, stablecoin, and user data.
 If the chain slug is unknown or ambiguous, resolve it first.
 
 ```
-defillama-db:resolve_entity
+defillama:resolve_entity
   entity_type: "chain"
   name: "<user-provided name>"
 ```
@@ -29,7 +29,7 @@ defillama-db:resolve_entity
 Fetch aggregate TVL, fees, revenue, DEX volume, and trends.
 
 ```
-defillama-db:get_chain_metrics
+defillama:get_chain_metrics
   chain: "<slug>"
 ```
 
@@ -41,7 +41,7 @@ Key fields: `tvl_base`, `chain_fees_1d`, `chain_revenue_1d`, `app_fees_1d`,
 Identify the largest protocols by TVL on this chain.
 
 ```
-defillama-db:get_protocol_metrics
+defillama:get_protocol_metrics
   chain: "<slug>"
 ```
 
@@ -50,7 +50,7 @@ defillama-db:get_protocol_metrics
 Measure capital entering and leaving the chain.
 
 ```
-defillama-db:get_bridge_flows
+defillama:get_bridge_flows
   chain: "<slug>"
 ```
 
@@ -61,7 +61,7 @@ Positive net flow = capital inflow (bullish). Negative = outflow.
 Assess stablecoin liquidity available on the chain.
 
 ```
-defillama-db:get_stablecoin_supply
+defillama:get_stablecoin_supply
   chain: "<slug>"
 ```
 
@@ -70,7 +70,7 @@ defillama-db:get_stablecoin_supply
 Fetch active addresses and transaction counts.
 
 ```
-defillama-db:get_user_activity
+defillama:get_user_activity
   chain: "<slug>"
 ```
 

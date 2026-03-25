@@ -17,7 +17,7 @@ history, oracle dependencies, treasury, fundamentals, and yield levels.
 ### Step 1 - Resolve the protocol entity
 
 ```
-defillama-db:resolve_entity
+defillama:resolve_entity
   entity_type: "protocol"
   name: "<user-provided name>"
 ```
@@ -27,7 +27,7 @@ defillama-db:resolve_entity
 Check whether the protocol has been exploited before.
 
 ```
-defillama-db:get_events
+defillama:get_events
   protocol: "<slug>"
   event_type: "hacks"
 ```
@@ -40,7 +40,7 @@ and whether funds were recovered.
 Identify which oracle the protocol relies on and how much value it secures.
 
 ```
-defillama-db:get_oracle_metrics
+defillama:get_oracle_metrics
 ```
 
 Filter results for the protocol's oracle. Oracle metrics automatically
@@ -53,7 +53,7 @@ has higher risk than one using Chainlink or Pyth.
 Assess the protocol's financial reserves.
 
 ```
-defillama-db:get_treasury
+defillama:get_treasury
   treasury: "<slug>"
 ```
 
@@ -65,7 +65,7 @@ and continued development.
 Check TVL, revenue, and trends to evaluate sustainability.
 
 ```
-defillama-db:get_protocol_metrics
+defillama:get_protocol_metrics
   protocol: "<slug>"
 ```
 
@@ -77,7 +77,7 @@ real revenue?
 Examine pool APYs for sustainability red flags.
 
 ```
-defillama-db:get_yield_pools
+defillama:get_yield_pools
   protocol: "<slug>"
 ```
 

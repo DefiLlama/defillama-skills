@@ -7,7 +7,7 @@ description: Patterns for DeFi market analysis, screening, and comparison using 
 
 ## Valuation Ratios
 
-Pre-computed in `defillama-db:get_protocol_metrics` and `defillama-db:get_category_metrics`:
+Pre-computed in `defillama:get_protocol_metrics` and `defillama:get_category_metrics`:
 
 - `ps_ratio` = mcap / annualised revenue. Lower = potentially undervalued relative to revenue.
 - `pf_ratio` = mcap / annualised fees. Lower = more fee-efficient valuation.
@@ -27,7 +27,7 @@ Sort by any pct_change column to find fastest movers.
 Use array params for side-by-side comparison in a single call:
 
 ```
-defillama-db:get_protocol_metrics(
+defillama:get_protocol_metrics(
   protocol: ["aave", "compound-v3", "morpho"],
   metrics: ["tvl_base", "fees_1d", "revenue_1d", "ps_ratio"]
 )
@@ -37,10 +37,10 @@ This returns one row per protocol, which is more efficient than calling once per
 
 ## Category Comparison
 
-Use `defillama-db:get_category_metrics` to compare DeFi sectors:
+Use `defillama:get_category_metrics` to compare DeFi sectors:
 
 ```
-defillama-db:get_category_metrics(
+defillama:get_category_metrics(
   category: "Lending",
   metrics: ["tvl_base", "fees_1d", "protocol_count"]
 )
@@ -50,10 +50,10 @@ Call once per category in parallel for side-by-side comparison.
 
 ## Token Sector Screening
 
-Use `defillama-db:get_token_prices` for token-level analysis:
+Use `defillama:get_token_prices` for token-level analysis:
 
 ```
-defillama-db:get_token_prices(token: "coingecko:ethereum", period: "30d")
+defillama:get_token_prices(token: "coingecko:ethereum", period: "30d")
 ```
 
 ## Historical Trends
@@ -71,32 +71,32 @@ Historical queries return daily data points with a `date` column.
 
 Compare across entity types using parallel tool calls:
 
-- "ETH price vs Ethereum TVL" -> `defillama-db:get_token_prices` + `defillama-db:get_chain_metrics`
-- "Aave TVL vs AAVE token price" -> `defillama-db:get_protocol_metrics` + `defillama-db:get_token_prices`
-- "Lending vs DEX category" -> two `defillama-db:get_category_metrics` calls in parallel
+- "ETH price vs Ethereum TVL" -> `defillama:get_token_prices` + `defillama:get_chain_metrics`
+- "Aave TVL vs AAVE token price" -> `defillama:get_protocol_metrics` + `defillama:get_token_prices`
+- "Lending vs DEX category" -> two `defillama:get_category_metrics` calls in parallel
 
 ## Examples
 
 **Example 1:**
 User: "Most undervalued DeFi protocols by P/S ratio"
-Tool call: `defillama-db:get_protocol_metrics(sort_by: "ps_ratio asc", limit: 20, metrics: ["tvl_base", "revenue_1d", "ps_ratio", "mcap"])`
+Tool call: `defillama:get_protocol_metrics(sort_by: "ps_ratio asc", limit: 20, metrics: ["tvl_base", "revenue_1d", "ps_ratio", "mcap"])`
 
 **Example 2:**
 User: "Which protocols grew TVL most in last 30 days?"
-Tool call: `defillama-db:get_protocol_metrics(sort_by: "tvl_base_30d_pct_change desc", limit: 10, metrics: ["tvl_base", "tvl_base_30d_pct_change"])`
+Tool call: `defillama:get_protocol_metrics(sort_by: "tvl_base_30d_pct_change desc", limit: 10, metrics: ["tvl_base", "tvl_base_30d_pct_change"])`
 
 **Example 3:**
 User: "Compare Aave and Compound fees"
-Tool call: `defillama-db:get_protocol_metrics(protocol: ["aave", "compound-v3"], metrics: ["tvl_base", "fees_1d", "revenue_1d"])`
+Tool call: `defillama:get_protocol_metrics(protocol: ["aave", "compound-v3"], metrics: ["tvl_base", "fees_1d", "revenue_1d"])`
 
 **Example 4:**
 User: "Compare Lending vs DEX fees and TVL"
-Tool call: `defillama-db:get_category_metrics(category: ["Lending", "DEX"], metrics: ["tvl_base", "fees_1d", "revenue_1d"])`
+Tool call: `defillama:get_category_metrics(category: ["Lending", "DEX"], metrics: ["tvl_base", "fees_1d", "revenue_1d"])`
 
 **Example 5:**
 User: "Aave TVL trend over 90 days"
-Tool call: `defillama-db:get_protocol_metrics(protocol: "aave", metrics: ["tvl_base"], period: "90d")`
+Tool call: `defillama:get_protocol_metrics(protocol: "aave", metrics: ["tvl_base"], period: "90d")`
 
 **Example 6:**
 User: "Aave fees in Q1 2025"
-Tool call: `defillama-db:get_protocol_metrics(protocol: "aave", metrics: ["fees_1d"], start_date: "2025-01-01", end_date: "2025-03-31")`
+Tool call: `defillama:get_protocol_metrics(protocol: "aave", metrics: ["fees_1d"], start_date: "2025-01-01", end_date: "2025-03-31")`

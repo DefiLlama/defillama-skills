@@ -19,7 +19,7 @@ DeFi deposit tracking, yield opportunities, and protocol fundamentals.
 Get the canonical token identifier (coingecko:xxx format).
 
 ```
-defillama-db:resolve_entity
+defillama:resolve_entity
   entity_type: "token"
   name: "<user-provided name>"
 ```
@@ -29,7 +29,7 @@ defillama-db:resolve_entity
 Fetch current price, market cap, volume, and ATH.
 
 ```
-defillama-db:get_token_prices
+defillama:get_token_prices
   token: "<coingecko:token_id>"
 ```
 
@@ -40,7 +40,7 @@ Key fields: `price`, `mcap`, `volume`, `price_ath`. Distance from ATH can be com
 Check vesting and upcoming token unlocks that may create sell pressure.
 
 ```
-defillama-db:get_token_unlocks
+defillama:get_token_unlocks
   token: "<token_name>"
 ```
 
@@ -51,7 +51,7 @@ Flag any large unlocks in the next 30 days as potential sell pressure.
 See where the token is deposited across DeFi protocols.
 
 ```
-defillama-db:get_token_tvl
+defillama:get_token_tvl
   token: "<coingecko:token_id>"
 ```
 
@@ -68,7 +68,7 @@ DeFi demand and utility.
 Find pools where users can earn yield on this token.
 
 ```
-defillama-db:get_yield_pools
+defillama:get_yield_pools
   token: "<coingecko:token_id>"
 ```
 
@@ -80,7 +80,7 @@ Uses `dim.pool_set()` for family matching.
 If the token belongs to a DeFi protocol, fetch protocol metrics.
 
 ```
-defillama-db:get_protocol_metrics
+defillama:get_protocol_metrics
   protocol: "<protocol_slug>"
 ```
 

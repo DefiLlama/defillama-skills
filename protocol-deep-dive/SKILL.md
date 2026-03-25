@@ -19,7 +19,7 @@ data sources into one structured report.
 If the protocol slug is unknown or ambiguous, resolve it first.
 
 ```
-defillama-db:resolve_entity
+defillama:resolve_entity
   entity_type: "protocol"
   name: "<user-provided name>"
 ```
@@ -29,7 +29,7 @@ defillama-db:resolve_entity
 Fetch TVL, fees, revenue, market cap, ratios, and trend data.
 
 ```
-defillama-db:get_protocol_metrics
+defillama:get_protocol_metrics
   protocol: "<slug>"
 ```
 
@@ -41,7 +41,7 @@ Key fields to surface: `tvl_base`, `fees_1d`, `revenue_1d`, `mcap`,
 Retrieve the protocol's highest-TVL pools to show yield opportunities.
 
 ```
-defillama-db:get_yield_pools
+defillama:get_yield_pools
   protocol: "<slug>"
 ```
 
@@ -53,7 +53,7 @@ base APY is very low and rewards dominate (sustainability signal).
 Check for hacks, fundraises, or other notable events.
 
 ```
-defillama-db:get_events
+defillama:get_events
   protocol: "<slug>"
   event_type: "hacks"
 ```
@@ -61,7 +61,7 @@ defillama-db:get_events
 Also check for fundraising activity:
 
 ```
-defillama-db:get_events
+defillama:get_events
   protocol: "<slug>"
   event_type: "raises"
 ```
@@ -71,7 +71,7 @@ defillama-db:get_events
 Get the revenue breakdown to understand where income comes from.
 
 ```
-defillama-db:get_income_statement
+defillama:get_income_statement
   protocol: "<slug>"
 ```
 
@@ -82,7 +82,7 @@ Use the `metric` param to filter by specific income line items if needed.
 Fetch daily active users and transaction counts.
 
 ```
-defillama-db:get_user_activity
+defillama:get_user_activity
   protocol: "<slug>"
 ```
 
@@ -91,7 +91,7 @@ defillama-db:get_user_activity
 If the protocol has a native token, fetch current price context.
 
 ```
-defillama-db:get_token_prices
+defillama:get_token_prices
   token: "<coingecko:token_id>"
 ```
 
