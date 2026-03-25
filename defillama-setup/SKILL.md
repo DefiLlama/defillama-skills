@@ -1,0 +1,153 @@
+---
+name: defillama-setup
+description: >
+  Install and configure the DefiLlama MCP server for DeFi analytics.
+  Provides 23 tools for TVL, token prices, yields, protocol metrics,
+  stablecoins, bridges, ETFs, hacks, raises, and more. Supports OAuth
+  login with your DefiLlama account. Use when the user wants to set up
+  DefiLlama MCP, connect to DeFi data, or install DeFi analytics tools.
+version: 1.0.0
+author: defillama
+metadata:
+  openclaw:
+    primaryEnv: none
+---
+
+# DefiLlama MCP Server Setup
+
+Connect your AI agent to DefiLlama's DeFi analytics database with 23
+tools covering TVL, yields, token prices, protocol metrics, stablecoins,
+bridges, ETFs, hacks, fundraises, treasuries, and more.
+
+## Prerequisites
+
+- A DefiLlama account with an active API subscription
+  - Sign up or upgrade at https://defillama.com/subscribe
+
+## Step 1 - Add the MCP server
+
+Add the following to your MCP client config file.
+
+**OpenClaw** (`~/.openclaw/openclaw.json`):
+```json
+{
+  "mcpServers": {
+    "defillama": {
+      "url": "https://mcp.defillama.com/mcp"
+    }
+  }
+}
+```
+
+**Claude Code** (run in terminal):
+```bash
+claude mcp add defillama --transport http https://mcp.defillama.com/mcp
+```
+
+**Claude Desktop / Cursor / Windsurf** (`claude_desktop_config.json` or equivalent):
+```json
+{
+  "mcpServers": {
+    "defillama": {
+      "url": "https://mcp.defillama.com/mcp"
+    }
+  }
+}
+```
+
+## Step 2 - Authenticate
+
+Restart your agent after adding the config. On first connection:
+
+1. Your browser will open automatically to the DefiLlama login page
+2. Sign in with your DefiLlama email and password
+3. Your API subscription is verified automatically
+4. The OAuth token is stored and refreshes every 24 hours
+
+No API keys to copy. No environment variables to set. Just log in once.
+
+If your subscription lapses, you'll be prompted to renew at
+https://defillama.com/subscribe on your next token refresh.
+
+## Step 3 - Verify
+
+Ask your agent:
+
+> "What is the current total DeFi TVL?"
+
+If it calls `defillama-db:get_market_totals` and returns data, you're
+connected.
+
+## Step 4 - Install workflow skills (optional)
+
+DefiLlama provides 10 workflow skills that teach your agent structured
+analysis patterns. These are optional but recommended — they turn raw
+tool access into guided research workflows.
+
+Copy the skills from the DefiLlama MCP repo into your skills directory:
+
+**OpenClaw:**
+```bash
+git clone https://github.com/DefiLlama/defillama-mcp /tmp/defillama-mcp
+cp -r /tmp/defillama-mcp/skills/* ~/.openclaw/skills/
+```
+
+**Claude Code:**
+```bash
+git clone https://github.com/DefiLlama/defillama-mcp /tmp/defillama-mcp
+cp -r /tmp/defillama-mcp/skills/* .claude/skills/
+```
+
+Available workflow skills:
+
+| Skill | What it does |
+|-------|-------------|
+| `defi-data` | Core reference — maps any DeFi question to the right tool and params |
+| `defi-market-overview` | Full market snapshot: TVL, categories, chains, events, stablecoins, ETFs |
+| `protocol-deep-dive` | Complete protocol report: TVL, fees, yields, income, users, token |
+| `token-research` | Token analysis: price, unlocks, DeFi deposits, yield opportunities |
+| `chain-ecosystem` | Blockchain overview: TVL, top protocols, bridges, stablecoins, users |
+| `market-analysis` | Screening and comparison: valuation ratios, growth, cross-entity |
+| `yield-strategies` | Yield hunting: pool filtering, APY conventions, capacity assessment |
+| `risk-assessment` | Risk evaluation: hacks, oracles, treasury, fundamentals, yield flags |
+| `flows-and-events` | Capital flows: bridges, ETFs, stablecoins, hacks, raises, OI |
+| `institutional-crypto` | Institutional exposure: corporate holdings, ETF flows, mNAV ratios |
+
+## Available Tools (23)
+
+| Tool | Description |
+|------|-------------|
+| `resolve_entity` | Fuzzy-match protocol, chain, or token names to exact slugs |
+| `get_market_totals` | Global DeFi TVL, DEX volume, derivatives volume |
+| `get_protocol_metrics` | Protocol TVL, fees, revenue, mcap, ratios, trends |
+| `get_protocol_info` | Protocol metadata, URLs, audit info, tags |
+| `get_chain_metrics` | Chain TVL, gas fees, revenue, DEX volume |
+| `get_chain_info` | Chain metadata, type, L2 parent |
+| `get_category_metrics` | Category rankings by TVL, fees, protocol count |
+| `list_categories` | List all valid categories |
+| `get_token_prices` | Token price, mcap, volume, ATH |
+| `get_token_tvl` | Token deposits across DeFi protocols |
+| `get_token_unlocks` | Vesting schedules and upcoming unlocks |
+| `get_yield_pools` | Pool APY, TVL, lending/borrowing rates |
+| `get_stablecoin_supply` | Stablecoin issuance by chain |
+| `get_bridge_flows` | Bridge volume and net flows by chain |
+| `get_etf_flows` | Bitcoin and Ethereum ETF inflows/outflows |
+| `get_dat_holdings` | Institutional crypto holdings and mNAV |
+| `get_events` | Hacks, fundraises, protocol events |
+| `get_oracle_metrics` | Oracle TVS and protocol coverage |
+| `get_cex_volumes` | Centralized exchange trading volume |
+| `get_open_interest` | Derivatives open interest |
+| `get_treasury` | Protocol treasury holdings |
+| `get_user_activity` | Daily active users and transactions |
+| `get_income_statement` | Protocol revenue breakdown |
+
+## Troubleshooting
+
+- **Browser doesn't open**: Check that your MCP client supports OAuth.
+  Stdio-only clients (older versions) may not support remote servers.
+- **"API Subscription Required"**: You need an active plan at
+  https://defillama.com/subscribe
+- **0 rows returned**: The entity slug may be wrong. Use
+  `resolve_entity` to find the correct slug.
+- **Connection refused**: Verify the URL is exactly
+  `https://mcp.defillama.com/mcp` (note the `/mcp` path).
