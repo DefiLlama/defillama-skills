@@ -8,9 +8,6 @@ description: >
   DefiLlama MCP, connect to DeFi data, or install DeFi analytics tools.
 version: 1.0.0
 author: defillama
-metadata:
-  openclaw:
-    primaryEnv: none
 ---
 
 # DefiLlama MCP Server Setup
@@ -26,25 +23,13 @@ bridges, ETFs, hacks, fundraises, treasuries, and more.
 
 ## Step 1 - Add the MCP server
 
-Add the following to your MCP client config file.
-
-**OpenClaw** (`~/.openclaw/openclaw.json`):
-```json
-{
-  "mcpServers": {
-    "defillama": {
-      "url": "https://mcp.defillama.com/mcp"
-    }
-  }
-}
-```
-
 **Claude Code** (run in terminal):
 ```bash
 claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 ```
 
-**Claude Desktop / Cursor / Windsurf** (`claude_desktop_config.json` or equivalent):
+**Claude Desktop / Cursor / Windsurf / Codex / Gemini CLI / OpenCode**
+(add to your MCP config file):
 ```json
 {
   "mcpServers": {
