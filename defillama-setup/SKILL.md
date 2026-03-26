@@ -40,6 +40,18 @@ claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 }
 ```
 
+**OpenClaw and other stdio-only agents** (uses `mcp-remote` as a bridge):
+```json
+{
+  "mcpServers": {
+    "defillama": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.defillama.com/mcp"]
+    }
+  }
+}
+```
+
 ## Step 2 - Authenticate
 
 After adding the server, authenticate via OAuth:
@@ -48,6 +60,17 @@ After adding the server, authenticate via OAuth:
 1. Run `/mcp` inside Claude Code
 2. Navigate to the DefiLlama server and press Enter
 3. Select "Authenticate" to open the browser login flow
+
+**OpenClaw (headless/no browser):**
+When `mcp-remote` starts, it outputs an OAuth URL. Since there is no
+browser on the server:
+1. Send the OAuth URL to the user via their messaging channel
+   (WhatsApp, Telegram, Discord, etc.)
+2. The user opens the link, logs in with their DefiLlama account
+3. After login, the browser redirects to a `localhost` URL that won't load
+4. Tell the user to copy the full `localhost:...` URL from their browser
+   address bar and send it back
+5. Pass the callback URL back to `mcp-remote` to complete authentication
 
 **Other agents:** Consult your agent's documentation for how to authenticate
 with OAuth-enabled MCP servers.

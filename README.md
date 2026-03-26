@@ -19,7 +19,7 @@ Read https://raw.githubusercontent.com/DefiLlama/defillama-skills/master/defilla
 claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 ```
 
-**OpenClaw** (`~/.openclaw/openclaw.json`):
+**Claude Desktop / Cursor / Windsurf / Codex / Gemini CLI / OpenCode:**
 ```json
 {
   "mcpServers": {
@@ -30,12 +30,13 @@ claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 }
 ```
 
-**Cursor / Windsurf / Claude Desktop:**
+**OpenClaw and other stdio-only agents** (uses `mcp-remote` as a bridge):
 ```json
 {
   "mcpServers": {
     "defillama": {
-      "url": "https://mcp.defillama.com/mcp"
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.defillama.com/mcp"]
     }
   }
 }
@@ -43,22 +44,20 @@ claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 
 ### 2. Log in
 
-On first connection your browser opens the DefiLlama login page. Sign in with your account — requires an [active API subscription](https://defillama.com/subscribe). That's it. No API keys, no env vars.
+Requires an [active API subscription](https://defillama.com/subscribe).
 
-### 3. Install skills (optional)
+**Claude Code:** Run `/mcp`, navigate to the DefiLlama server, press Enter, and select "Authenticate".
 
-Skills teach your agent structured DeFi analysis workflows. Copy them into your agent's skills directory:
+**Desktop agents (Cursor, Windsurf, Claude Desktop):** On first connection your browser opens the DefiLlama login page. Sign in and you're done.
 
-**OpenClaw:**
+**Headless agents (OpenClaw):** `mcp-remote` outputs an OAuth URL. Open it on your phone/computer, log in, then copy the `localhost:...` URL from your browser address bar after redirect and send it back to the agent.
+
+No API keys, no env vars. Just log in once.
+
+### 3. Install skills
+
 ```bash
-git clone https://github.com/DefiLlama/defillama-skills /tmp/defillama-skills
-cp -r /tmp/defillama-skills/*/ ~/.openclaw/skills/
-```
-
-**Claude Code:**
-```bash
-git clone https://github.com/DefiLlama/defillama-skills /tmp/defillama-skills
-cp -r /tmp/defillama-skills/*/ .claude/skills/
+npx skills add DefiLlama/defillama-skills --yes
 ```
 
 ## Skills
