@@ -35,12 +35,39 @@ This cannot be done programmatically. Instruct the user to:
 claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 ```
 
-**Claude Desktop / Cursor / Windsurf / Codex / Gemini CLI / OpenCode**
-(add to your MCP config file):
+**Codex** (run in terminal):
+```bash
+codex mcp add defillama --url https://mcp.defillama.com/mcp
+```
+
+**Claude Desktop / Cursor / Windsurf** (add to MCP config file):
 ```json
 {
   "mcpServers": {
     "defillama": {
+      "url": "https://mcp.defillama.com/mcp"
+    }
+  }
+}
+```
+
+**Gemini CLI** (add to MCP config file):
+```json
+{
+  "mcpServers": {
+    "defillama": {
+      "httpUrl": "https://mcp.defillama.com/mcp"
+    }
+  }
+}
+```
+
+**OpenCode** (add to MCP config file):
+```json
+{
+  "mcp": {
+    "defillama": {
+      "type": "remote",
       "url": "https://mcp.defillama.com/mcp"
     }
   }

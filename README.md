@@ -14,12 +14,20 @@ Read https://raw.githubusercontent.com/DefiLlama/defillama-skills/master/defilla
 
 ### 1. Add the MCP server
 
+**Claude.ai (web):**
+Go to Customize → Connectors → + → Add custom connector. Name: `DefiLlama`, URL: `https://mcp.defillama.com/mcp`. Click Add and log in.
+
 **Claude Code:**
 ```bash
 claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 ```
 
-**Claude Desktop / Cursor / Windsurf / Codex / Gemini CLI / OpenCode:**
+**Codex:**
+```bash
+codex mcp add defillama --url https://mcp.defillama.com/mcp
+```
+
+**Claude Desktop / Cursor / Windsurf:**
 ```json
 {
   "mcpServers": {
@@ -30,13 +38,38 @@ claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 }
 ```
 
-**OpenClaw and other stdio-only agents** (uses `mcp-remote` as a bridge):
+**Gemini CLI:**
 ```json
 {
   "mcpServers": {
     "defillama": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.defillama.com/mcp"]
+      "httpUrl": "https://mcp.defillama.com/mcp"
+    }
+  }
+}
+```
+
+**OpenCode:**
+```json
+{
+  "mcp": {
+    "defillama": {
+      "type": "remote",
+      "url": "https://mcp.defillama.com/mcp"
+    }
+  }
+}
+```
+
+**OpenClaw and other stdio-only agents** (uses `mcp-remote` as a bridge):
+```json
+{
+  "mcp": {
+    "servers": {
+      "defillama": {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://mcp.defillama.com/mcp"]
+      }
     }
   }
 }
