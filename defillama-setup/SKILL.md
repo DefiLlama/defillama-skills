@@ -23,6 +23,13 @@ bridges, ETFs, hacks, fundraises, treasuries, and more.
 
 ## Step 1 - Add the MCP server
 
+**Claude.ai (web):**
+This cannot be done programmatically. Instruct the user to:
+1. Go to Customize -> Connectors -> Plus button -> Add custom connector
+2. Name: `DefiLlama`
+3. URL: `https://mcp.defillama.com/mcp`
+4. Click Add — it will prompt them to log in with their DefiLlama account
+
 **Claude Code** (run in terminal):
 ```bash
 claude mcp add defillama --transport http https://mcp.defillama.com/mcp
