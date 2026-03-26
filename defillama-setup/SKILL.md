@@ -89,12 +89,14 @@ Copy the skills from the DefiLlama MCP repo into your skills directory:
 **OpenClaw:**
 ```bash
 git clone https://github.com/DefiLlama/defillama-skills /tmp/defillama-skills
+mkdir -p ~/.openclaw/skills
 cp -r /tmp/defillama-skills/* ~/.openclaw/skills/
 ```
 
 **Claude Code:**
 ```bash
 git clone https://github.com/DefiLlama/defillama-skills /tmp/defillama-skills
+mkdir -p .claude/skills
 cp -r /tmp/defillama-skills/* .claude/skills/
 ```
 
