@@ -57,12 +57,20 @@ claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 
 ## Step 2 - Authenticate
 
-Restart your agent after adding the config. On first connection:
+After adding the server, authenticate via OAuth:
 
-1. Your browser will open automatically to the DefiLlama login page
-2. Sign in with your DefiLlama email and password
-3. Your API subscription is verified automatically
-4. The OAuth token is stored and refreshes every 24 hours
+**Claude Code:**
+1. Run `/mcp` inside Claude Code
+2. Navigate to the DefiLlama server and press Enter
+3. Select "Authenticate" to open the browser login flow
+
+**Other agents:** Consult your agent's documentation for how to authenticate
+with OAuth-enabled MCP servers.
+
+Once authenticated:
+- Sign in with your DefiLlama email and password
+- Your API subscription is verified automatically
+- The OAuth token is stored and refreshes every 24 hours
 
 No API keys to copy. No environment variables to set. Just log in once.
 
