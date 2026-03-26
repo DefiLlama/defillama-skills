@@ -43,10 +43,12 @@ claude mcp add defillama --transport http https://mcp.defillama.com/mcp
 **OpenClaw and other stdio-only agents** (uses `mcp-remote` as a bridge):
 ```json
 {
-  "mcpServers": {
-    "defillama": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.defillama.com/mcp"]
+  "mcp": {
+    "servers": {
+      "defillama": {
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://mcp.defillama.com/mcp"]
+      }
     }
   }
 }
