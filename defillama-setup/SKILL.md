@@ -158,6 +158,7 @@ Available workflow skills:
 | `market-analysis` | Screening and comparison: valuation ratios, growth, cross-entity |
 | `yield-strategies` | Yield hunting: pool filtering, APY conventions, capacity assessment |
 | `risk-assessment` | Risk evaluation: hacks, oracles, treasury, fundamentals, yield flags |
+| `anomaly-detection` | Forensic spike analysis: TVL/fee/price outliers with root-cause filters |
 | `flows-and-events` | Capital flows: bridges, ETFs, stablecoins, hacks, raises, OI |
 | `institutional-crypto` | Institutional exposure: corporate holdings, ETF flows, mNAV ratios |
 
