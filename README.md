@@ -99,6 +99,7 @@ npx skills add DefiLlama/defillama-skills --yes
 |-------|-------------|
 | **defi-data** | Core reference — maps any DeFi question to the right tool and params |
 | **defi-market-overview** | Full market snapshot: TVL, categories, chains, events, stablecoins, ETFs |
+| **data-quality-audit** | Data-quality triage: suspicious TVL, fee, revenue, yield, and flow anomalies |
 | **protocol-deep-dive** | Complete protocol report: TVL, fees, yields, income, users, token |
 | **token-research** | Token analysis: price, unlocks, DeFi deposits, yield opportunities |
 | **chain-ecosystem** | Blockchain overview: TVL, top protocols, bridges, stablecoins, users |
